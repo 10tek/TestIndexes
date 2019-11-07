@@ -19,9 +19,5 @@ namespace IndexTests
         {
             optionsBuilder.UseSqlServer(connectionString);
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Photo>().HasIndex(x => x)
-        }
     }
 }
