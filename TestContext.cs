@@ -17,7 +17,13 @@ namespace IndexTests
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseNpgsql(connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Photo>().HasIndex(x => x.FileName);
+            modelBuilder.Entity<Photo>().HasIndex(x => new { x.Latitude, x.Longitude });
         }
     }
 }
